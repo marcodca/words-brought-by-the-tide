@@ -2,32 +2,31 @@ import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
 import "./App.css";
-
-fetch("https://quotes15.p.rapidapi.com/quotes/random/?language_code=en", {
-  method: "GET",
-  headers: {
-    "x-rapidapi-host": "quotes15.p.rapidapi.com",
-    "x-rapidapi-key": process.env.REACT_APP_X_RAPIDPI_KEY
-  }
-})
-  .then(response => {
-    response.json().then(a => console.log(a));
-  })
-  .catch(err => {
-    console.log(err);
-  });
+import { selectQuotes } from "./reducers/quotesSlice";
+import fetchQuote from "./api/fetchRandomQuote";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  const quotesData = useSelector(selectQuotes);
+  console.log(quotesData);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        {quotesData.quotes.map(quote => (
+          <p>{quote.content} <br/> By: {quote.author}</p>
+        ))}
+
         <span>
-          <span>Learn </span>
+          <span
+            onClick={() => {
+              dispatch(fetchQuote);
+            }}
+          >
+            Learn{" "}
+          </span>
           <a
             className="App-link"
             href="https://reactjs.org/"
