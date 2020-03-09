@@ -1,0 +1,7 @@
+type TotalFetchCount {
+  count: Int!
+}
+
+type Query {
+  getTotalfetchCount: TotalFetchCount!
+}
