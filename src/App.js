@@ -4,19 +4,17 @@ import { selectCounter } from './reducers/totalCountSlice';
 import fetchQuote from "./api/fetchRandomQuote";
 import { useDispatch, useSelector } from "react-redux";
 import getTotalQuotesCount from './api/getTotalQuotesCount';
+import QuotesDisplayContainer from './components/QuotesDisplayContainer';
 
 
 function App() {
-  const dispatch = useDispatch();
-  const quotesData = useSelector(selectQuotes);
-  const totalCount = useSelector(selectCounter);
 
-  useEffect(()=>{
-    dispatch(getTotalQuotesCount);
-  },[]);
+  const count =  useSelector(selectCounter);
 
   return (
     <div>
+      <QuotesDisplayContainer/>
+    <p>Total count: {count}</p>
     </div>
   );
 }
