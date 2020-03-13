@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import countReducer from "../features/counter/counterSlice";
 import quotesReducer from "../reducers/quotesSlice";
+import totalCountSlice from "../reducers/totalCountSlice";
 
 export default combineReducers({
-  counter: countReducer,
-  quotes: quotesReducer
+  quotes: quotesReducer,
+  totalCount: totalCountSlice
 });

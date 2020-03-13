@@ -1,15 +1,16 @@
+import axios from 'axios';
 import {
   fetchQuoteRequested,
   fetchQuoteFailed,
   fetchQuoteSucceeded
 } from "../reducers/quotesSlice";
+import addOneToTotalQuotesCount from './addOneToTotalQuotesCount';
 
 export default async dispatch => {
   dispatch(fetchQuoteRequested());
   try {
-    const response = await fetch(
-      "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-      {
+    const response = await axios({
+      url :"https://quotes15.p.rapidapi.com/quotes/random/?language_code=en", 
         method: "GET",
         headers: {
           "x-rapidapi-host": "quotes15.p.rapidapi.com",
@@ -17,7 +18,8 @@ export default async dispatch => {
         }
       }
     );
-    const data = await response.json();
+    
+    const { data } = response;
     if (!data.content && data.message) throw new Error(data.message);
 
     const {
@@ -25,6 +27,8 @@ export default async dispatch => {
       originator: { name }
     } = data;
     dispatch(fetchQuoteSucceeded({ content, author: name }));
+    dispatch(addOneToTotalQuotesCount);
+
   } catch (error) {
     console.error(error);
     dispatch(fetchQuoteFailed({ error : error.message }));
