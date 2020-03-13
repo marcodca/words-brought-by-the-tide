@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-//TODO: Think the logic around fetchQuoteSucceeded for having a max limit for the stored quotes.
+//A reference for the max nr of quotes to be stored in the state.
+const quotesLimit =  5;
 
 export const slice = createSlice({
   name: 'quotes',
@@ -21,6 +22,7 @@ export const slice = createSlice({
 
       const {content, author} = action.payload;  
       state.loading = 'idle';
+      if (state.quotes.length >= quotesLimit) state.quotes.shift();
       state.quotes.push({content, author})
       state.error = null
     },
