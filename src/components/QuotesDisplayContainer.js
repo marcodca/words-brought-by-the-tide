@@ -10,6 +10,8 @@ export default () => {
   const quotesData = useSelector(selectQuotes);
   const { loading, error, quotes } = quotesData;
 
+  console.log(quotesData);
+
   useEffect(() => {
     const id = setTimeout(() => {
       if (!quotes[quotesIndex + 1]) {
@@ -17,7 +19,7 @@ export default () => {
       } else {
         setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));
       }
-    }, 8000);
+    }, 23000);
     return () => {
       clearTimeout(id);
     };
@@ -29,11 +31,8 @@ export default () => {
     };
   }, [quotes]);
 
-  console.log(quotesIndex);
-  console.log(quotes);
-
   return (
-    <>
+    <div data-testid="quotes-display-container">
       <QuotesDisplay quote={quotes[quotesIndex]} loading={loading} />
       <button
         onClick={() => {
@@ -55,6 +54,6 @@ export default () => {
       >
         Next
       </button>
-    </>
+    </div>
   );
 };
