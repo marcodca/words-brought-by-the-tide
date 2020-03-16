@@ -2,6 +2,9 @@
   "name": "words-brought-by-the-tide",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "13.1.0"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",

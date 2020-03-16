@@ -26,23 +26,14 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0) 55%,
     rgba(212, 217, 146, 1) 100%
-  );
+  ); */
   background-color: #ffc45e;
-  position: relative;
-  &::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0%;
-    background-image: url("https://www.transparenttextures.com/patterns/grey-sandbag.png");
-    z-index: 0;
-  }
+  background-image: url("https://www.transparenttextures.com/patterns/grey-sandbag.png");
+  box-shadow: inset 0px 30px 30px 5px rgb(255 255 255 / .3)   
 `;
 
 export default App;
