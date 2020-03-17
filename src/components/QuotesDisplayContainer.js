@@ -1,16 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
+import { useAnimation } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { selectQuotes } from "../reducers/quotesSlice";
 import fetchRandomQuote from "../api/fetchRandomQuote";
 import QuotesDisplay from "./QuotesDisplay";
+import WaveBig from "./WaveBig";
 
 export default () => {
   const dispatch = useDispatch();
   const [quotesIndex, setQuotesIndex] = useState(-1);
   const quotesData = useSelector(selectQuotes);
   const { loading, error, quotes } = quotesData;
+  const controls = useAnimation();
+  const quotesControls = useAnimation();
 
   console.log(quotesData);
+
+  const startWave = () => {
+    controls.start({
+      height: ["30vh", "130vh", "30vh"],
+      transition: { duration: 2, ease: "linear" }
+    });
+  };
+
+  const showQuote = () => {
+    console.log("show quote");
+    quotesControls.start({
+      opacity: [0, 0, 1, 0.8, 0.7, 0.6, 0.5],
+      transition: { duration: 7, ease: "linear" }
+    });
+  };
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -19,22 +38,38 @@ export default () => {
       } else {
         setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));
       }
-    }, 23000);
+    }, 7000);
     return () => {
       clearTimeout(id);
     };
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    startWave();
+    showQuote();
     return () => {
       setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));
     };
   }, [quotes]);
 
+  useLayoutEffect(() => {
+    startWave();
+    showQuote();
+  }, [quotesIndex]);
+
   return (
     <div data-testid="quotes-display-container">
-      <QuotesDisplay quote={quotes[quotesIndex]} loading={loading} />
+      <WaveBig controls={controls} />
+      <QuotesDisplay
+        quote={quotes[quotesIndex]}
+        loading={loading}
+        quotesControls={quotesControls}
+      />
       <button
+        style={{
+          position: "relative",
+          zIndex: 3
+        }}
         onClick={() => {
           setQuotesIndex(prev => (prev <= 0 ? 0 : prev - 1));
         }}
@@ -43,6 +78,10 @@ export default () => {
         Prev
       </button>
       <button
+        style={{
+          position: "relative",
+          zIndex: 3
+        }}
         onClick={() => {
           if (!!quotes[quotesIndex + 1]) {
             setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));

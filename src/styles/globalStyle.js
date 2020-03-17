@@ -12,4 +12,7 @@ export default createGlobalStyle`
     padding: 0;
     overflow: hidden;
   }
+  h1, h2 {
+    font-family: 'Special Elite', cursive;
+  }
 `;

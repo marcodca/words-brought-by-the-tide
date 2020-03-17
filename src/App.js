@@ -17,6 +17,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <WavesContainer />
+        <QuotesDisplayContainer/>
       </Container>
     </>
   );
@@ -26,14 +27,11 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  /* background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0) 55%,
-    rgba(212, 217, 146, 1) 100%
-  ); */
   background-color: #ffc45e;
   background-image: url("https://www.transparenttextures.com/patterns/grey-sandbag.png");
-  box-shadow: inset 0px 30px 30px 5px rgb(255 255 255 / .3)   
+  box-shadow: inset 0px 30px 30px 5px rgb(255 255 255 / .3);
+  z-index: 1;
+  position: relative;   
 `;
 
 export default App;

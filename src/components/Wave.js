@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export default ({ color = "none", initialPath, animatePath, delay }) => (
-  <svg
-    width="1202"
-    height="302"
-    viewBox="0 0 1202 302"
+  <Wrapper
+    width="100vw"
+    height="40vh"
+    viewBox="0 0 300 300"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ transform: "scaleX(1.4)", width: "100%", minWidth: "600px" }}
+    preserveAspectRatio="none"
+
   >
     <motion.path
       initial={{ d: initialPath }}
@@ -18,5 +19,14 @@ export default ({ color = "none", initialPath, animatePath, delay }) => (
       fill={color}
       strokeLinejoin="round"
     />
-  </svg>
+  </Wrapper>
 );
+
+
+const Wrapper = styled.svg`
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  z-index: 2;
+
+`
