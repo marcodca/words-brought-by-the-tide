@@ -19,6 +19,15 @@ export default () => {
   const startWave = () => {
     controls.start(i => {
       return {
+        opacity: [
+          1,
+          1,
+          1,
+          i.opacity,
+          i.opacity,
+          i.opacity,
+          1
+        ],
         height: ["30vh", "130vh", "30vh"],
         transition: {
           duration: 2,

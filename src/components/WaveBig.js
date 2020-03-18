@@ -11,6 +11,7 @@ const BaseWave = ({ color, controls, custom }) => (
     preserveAspectRatio="none"
     animate={controls}
     custom={custom}
+    initial={{ opacity: 1 }}
   >
     <motion.path
       initial={{
@@ -36,7 +37,7 @@ export default ({ controls }) => {
       }
 
       <BaseWave
-        custom={{ delay: 0, ease: "easeInOut" }}
+        custom={{ delay: 0, ease: "easeInOut", opacity: 1 }}
         color={"rgb(244, 238, 255 )"}
         controls={controls}
       />
@@ -44,7 +45,7 @@ export default ({ controls }) => {
         //blue wave
       }
       <BaseWave
-        custom={{ delay: 0.3, ease: "easeOut" }}
+        custom={{ delay: 0.3, ease: "easeOut", opacity: 0 }}
         color={"rgb(220, 214, 247)"}
         controls={controls}
       />
