@@ -8,7 +8,6 @@ import QuotesDisplayContainer from "./components/QuotesDisplayContainer";
 import { WaveStructure } from "./components/Wave";
 import styled from "styled-components";
 import GlobalStyle from "./styles/globalStyle";
-import { MoveToTheSides } from "./styles/animations";
 import WavesContainer from "./components/WavesContainer";
 
 function App() {

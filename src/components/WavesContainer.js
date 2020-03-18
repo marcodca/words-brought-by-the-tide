@@ -1,7 +1,6 @@
 import React from "react";
 import Wave from "./Wave";
 import waves from "../data/waves";
-import { MoveToTheSides, MoveUpAndDown } from "../styles/animations";
 
 const { waveOne } = waves;
 
