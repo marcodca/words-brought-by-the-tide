@@ -1,36 +1,16 @@
 import React from "react";
 import Wave from "./Wave";
-import waves from "../data/waves";
 
-const { waveOne } = waves;
+const waveColors = ["rgb(220 214 247 / .8)", "rgb(166 177 225 / .8)", "rgb(66 72 116 /.8)" ]; 
+
+
 
 const WavesContainer = () => (
   <>
-    {/* <MoveToTheSides> */}
-      <Wave
-        initialPath={waveOne.initialPath}
-        animatePath={waveOne.animatePath}
-        color={"rgb(220 214 247 / .8)"}
-      />
-    {/* </MoveToTheSides> */}
-    {/* <MoveUpAndDown> */}
-      <Wave
-        initialPath={waveOne.initialPath}
-        animatePath={waveOne.animatePath}
-        color={"rgb(166 177 225 / .8)" }
-        delay={2}
-      />
-    {/* </MoveUpAndDown> */}
-    {/* <MoveToTheSides delay={2}> */}
-      <Wave
-        initialPath={waveOne.initialPath}
-        animatePath={waveOne.animatePath}
-        color={"rgb(66 72 116 /.8)"}
-        delay={4}
-      />
-    {/* </MoveToTheSides> */}
+    {waveColors.map((color, i) => (
+      <Wave key={i} color={color} delay={i * 2} />
+    ))}
   </>
 );
-
 
 export default WavesContainer;

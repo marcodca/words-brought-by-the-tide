@@ -8,6 +8,7 @@ const QuotesDisplay = ({ quote, loading, quotesControls }) => {
     <AnimatePresence>
       {loading === "idle" && (
         <motion.div
+          exitBeforeEnter
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
           exit={{ opacity: 0 }}

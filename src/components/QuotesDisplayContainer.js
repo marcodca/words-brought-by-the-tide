@@ -17,14 +17,20 @@ export default () => {
   console.log(quotesData);
 
   const startWave = () => {
-    controls.start({
-      height: ["30vh", "130vh", "30vh"],
-      transition: { duration: 2, ease: "linear" }
+    controls.start(i => {
+      return {
+        height: ["30vh", "130vh", "30vh"],
+        transition: {
+          duration: 2,
+          ease: "linear",
+          ease: i.ease,
+          delay: i.delay
+        }
+      };
     });
   };
 
   const showQuote = () => {
-    console.log("show quote");
     quotesControls.start({
       opacity: [0, 0, 1, 0.8, 0.7, 0.6, 0.5],
       transition: { duration: 7, ease: "linear" }
