@@ -94,5 +94,5 @@ const Wrapper = styled(motion.svg)`
   position: absolute;
   bottom: -10%;
   left: -1%;
-  z-index: 1;
+  z-index: ${props => (props.custom.isWetSand ? 0 : 1)};
 `;
