@@ -4,40 +4,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectQuotes } from "../reducers/quotesSlice";
 import fetchRandomQuote from "../api/fetchRandomQuote";
 import QuotesDisplay from "./QuotesDisplay";
-import WaveBig from "./WaveBig";
+import WaveBig, { waveAnimationStarter } from "./WaveBig";
 
 export default () => {
   const dispatch = useDispatch();
   const [quotesIndex, setQuotesIndex] = useState(-1);
   const quotesData = useSelector(selectQuotes);
   const { loading, error, quotes } = quotesData;
-  const controls = useAnimation();
+  const waveControls = useAnimation();
   const quotesControls = useAnimation();
 
-  console.log(quotesData);
-
   const startWave = () => {
-    controls.start(i => {
-      return {
-        opacity: [
-          1,
-          1,
-          1,
-          i.opacity,
-          i.opacity,
-          i.opacity,
-          1
-        ],
-        height: ["30vh", "130vh", "30vh"],
-        transition: {
-          duration: 2,
-          ease: "linear",
-          ease: i.ease,
-          delay: i.delay
-        }
-      };
-    });
-  };
+    waveAnimationStarter(waveControls);
+  } 
+
+  console.log(quotesData);
 
   const showQuote = () => {
     quotesControls.start({
@@ -74,7 +55,7 @@ export default () => {
 
   return (
     <div data-testid="quotes-display-container">
-      <WaveBig controls={controls} />
+      <WaveBig controls={waveControls} />
       <QuotesDisplay
         quote={quotes[quotesIndex]}
         loading={loading}
