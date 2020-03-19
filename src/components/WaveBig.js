@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { waveInitialPath, waveAnimatePath } from "./Wave";
 import styled from "styled-components";
 

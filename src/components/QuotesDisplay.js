@@ -51,7 +51,7 @@ const Author = styled.span`
 //Helper function for the setting the font-size of the quote depending on its length.
 
 const contentLengthChecker = length => {
-  //The key of the range object corresponds to the size in em that's ultimately gonna be returned by the function
+  //The key of the range object corresponds to the size in rem that's ultimately gonna be returned by the function
   const ranges = {
     1.5: [500, Infinity],
     1.8: [400, 501],
