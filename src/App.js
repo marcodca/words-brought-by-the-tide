@@ -1,36 +1,31 @@
-import React, { useEffect } from "react";
-import { selectQuotes } from "./reducers/quotesSlice";
-import { selectCounter } from "./reducers/totalCountSlice";
-import fetchQuote from "./api/fetchRandomQuote";
-import { useDispatch, useSelector } from "react-redux";
-import getTotalQuotesCount from "./api/getTotalQuotesCount";
-import QuotesDisplayContainer from "./components/QuotesDisplayContainer";
-import { WaveStructure } from "./components/Wave";
+import React from "react";
+import MainContainer from "./components/MainContainer";
 import styled from "styled-components";
 import GlobalStyle from "./styles/globalStyle";
-import WavesContainer from "./components/WavesContainer";
+import WavesContainer from "./components/WavesSmallContainer";
+import sandTexture from './styles/img/sand-texture.png';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Container>
+      <AppContainer>
+        <MainContainer/>
         <WavesContainer />
-        <QuotesDisplayContainer/>
-      </Container>
+      </AppContainer>
     </>
   );
 }
 
-const Container = styled.div`
+const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   background-color: #ffc45e;
-  background-image: url("https://www.transparenttextures.com/patterns/grey-sandbag.png");
+  background-image: url(${sandTexture});
   box-shadow: inset 0px 30px 30px 5px rgb(255 255 255 / .3);
   z-index: 1;
-  position: relative;   
+  position: relative; 
 `;
 
 export default App;
