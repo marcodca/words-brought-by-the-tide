@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { inRange } from "lodash";
 
 const QuotesDisplay = ({ quote, loading, quotesControls }) => {
-  
   return (
     <AnimatePresence>
       {loading === "idle" && (
@@ -67,6 +67,15 @@ const contentLengthChecker = length => {
     if (inRange(length, min, max)) acc = label;
     return acc;
   }, "");
+};
+
+QuotesDisplay.propTypes = {
+  quote: PropTypes.exact({
+    content: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
+  }),
+  loading: PropTypes.string,
+  quotesControls: PropTypes.object.isRequired
 };
 
 export default QuotesDisplay;

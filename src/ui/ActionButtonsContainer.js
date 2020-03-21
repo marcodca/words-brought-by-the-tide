@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import fetchRandomQuote from "../api/fetchRandomQuote";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import ActionButton from "./ActionButton";
 
-export default ({
+const ActionButtonsContainer = ({
   increaseQuotesIndex,
   decreaseQuotesIndex,
   quotesIndex,
@@ -19,7 +20,9 @@ export default ({
   return (
     <Container>
       <ActionButton
-        onClick={() => {decreaseQuotesIndex()}}
+        onClick={() => {
+          decreaseQuotesIndex();
+        }}
         disabled={isPreviousDisabled}
         label={"Previous Quote"}
       />
@@ -45,3 +48,13 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+ActionButtonsContainer.propTypes = {
+  increaseQuotesIndex: PropTypes.func.isRequired,
+  decreaseQuotesIndex: PropTypes.func.isRequired,
+  quotesIndex: PropTypes.number.isRequired,
+  quotes: PropTypes.array.isRequired,
+  loading: PropTypes.string,
+};
+
+export default ActionButtonsContainer;

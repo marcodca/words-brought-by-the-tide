@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -8,7 +9,7 @@ export const waveInitialPath =
 export const waveAnimatePath =
   "M203.318 31.5235C120.669 80.422 34.0022 51.8979 1 31.5235V268H1301V35.0306C1282.35 16.3262 1217.49 -9.85986 1107.29 35.0306C997.093 79.921 899.234 53.7349 864.079 35.0306C833.947 10.1471 747.424 -25.3912 642.391 31.5235C537.358 88.4382 436.486 55.238 399.179 31.5235C368.329 11.1491 285.967 -17.375 203.318 31.5235Z";
 
-export default ({ color = "none", delay }) => (
+const WaveSmall = ({ color = "none", delay }) => (
   <Wrapper
     width="102vw"
     height="40vh"
@@ -37,3 +38,9 @@ const Wrapper = styled.svg`
   left: -1%;
   z-index: 2;
 `;
+
+WaveSmall.propTypes = {
+  color: PropTypes.string.isRequired,
+  delay: PropTypes.number
+};
+export default WaveSmall;

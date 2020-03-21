@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import WaveBig from "./WaveBig";
 
-
-export default ({ controls }) => (
+const WavesBigContainer = ({ controls }) => (
   <>
     {customBigWaves.map((wave, i) => (
       <WaveBig
@@ -12,7 +12,7 @@ export default ({ controls }) => (
         controls={controls}
       />
     ))}
-    {smallWaves.map((wave, i) => (
+    {shortWaves.map((wave, i) => (
       <WaveBig
         key={i}
         color={wave.color}
@@ -54,7 +54,7 @@ const customBigWaves = [
   }
 ];
 
-const smallWaves = [
+const shortWaves = [
   { color: "rgb(244 238 255 /.7 )", ease: "easeInOut" },
   { color: "rgb(220 214 247 /.7)", ease: "easeOut" }
 ];
@@ -76,3 +76,6 @@ export const waveAnimationStarter = customControls => {
     };
   });
 };
+
+WavesBigContainer.propTypes = { controls: PropTypes.object.isRequired };
+export default WavesBigContainer;

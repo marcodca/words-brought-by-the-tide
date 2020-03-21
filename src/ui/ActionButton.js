@@ -1,5 +1,5 @@
 import React from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import media from "../styles/mediaHelper";
@@ -50,9 +50,9 @@ const Button = styled(motion.button)`
 `;
 
 ActionButton.propsTypes = {
-  onClick: propTypes.func.isRequired,
-  disabled: propTypes.bool.isRequired,
-  label: propTypes.string.isRequired
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 export default ActionButton;

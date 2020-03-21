@@ -3,7 +3,7 @@ import GlobalStyle from "./styles/globalStyle";
 import sandTexture from "./styles/img/sand-texture.png";
 import styled from "styled-components"
 import MainContainer from "./ui/MainContainer";
-import WavesContainer from "./ui/WavesSmallContainer"
+import WavesSmallContainer from "./ui/WavesSmallContainer"
 import TotalCountDisplay from "./ui/TotalCountDisplay"
 import StatusDisplay from "./ui/StatusDisplay"
 import Signature from "./ui/Signature"
@@ -14,7 +14,7 @@ function App() {
       <GlobalStyle />
       <AppContainer>
         <MainContainer />
-        <WavesContainer />
+        <WavesSmallContainer />
         <TotalCountDisplay />
         <StatusDisplay />
         <Signature />

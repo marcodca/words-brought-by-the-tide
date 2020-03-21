@@ -18,9 +18,6 @@ export default () => {
   //Index to determine the quote to render
   const [quotesIndex, setQuotesIndex] = useState(-1);
 
-  console.log(quotesIndex);
-  console.log(quotes);
-
   const increaseQuotesIndex = () => {
     setQuotesIndex(prev => (prev >= quotesLimitNr ? quotesLimitNr : prev + 1));
   };
