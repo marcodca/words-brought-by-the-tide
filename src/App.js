@@ -1,17 +1,23 @@
 import React from "react";
-import MainContainer from "./components/MainContainer";
-import styled from "styled-components";
+import styled from "styled-./ui/MainContainer
 import GlobalStyle from "./styles/globalStyle";
-import WavesContainer from "./components/WavesSmallContainer";
-import sandTexture from './styles/img/sand-texture.png';
+import sandTexture from "./styles/img/sand-texture.png";
+import MainContainer from "./ui/MainContainer";
+import WavesContainer from "./ui/WavesSmallContainer
+import TotalCountDisplay from "./ui/TotalCountDisplay
+import StatusDisplay from "./ui/StatusDisplay
+import Signature from "./ui/Signature
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <AppContainer>
-        <MainContainer/>
+        <MainContainer />
         <WavesContainer />
+        <TotalCountDisplay />
+        <StatusDisplay />
+        <Signature />
       </AppContainer>
     </>
   );
@@ -23,9 +29,9 @@ const AppContainer = styled.div`
   overflow: hidden;
   background-color: #ffc45e;
   background-image: url(${sandTexture});
-  box-shadow: inset 0px 30px 30px 5px rgb(255 255 255 / .3);
+  box-shadow: inset 0px 30px 30px 5px rgb(255 255 255 / 0.3);
   z-index: 1;
-  position: relative; 
+  position: relative;
 `;
 
 export default App;
