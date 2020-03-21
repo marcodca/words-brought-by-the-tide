@@ -6,6 +6,7 @@ import fetchRandomQuote from "../api/fetchRandomQuote";
 import QuotesDisplay from "./QuotesDisplay";
 import WavesBigContainer, { waveAnimationStarter } from "./WavesBigContainer";
 import ActionButtonsContainer from "./ActionButtonsContainer";
+import { quotesLimitNr, secondsBetweenWaves } from "../config";
 
 export default () => {
   const dispatch = useDispatch();
@@ -13,9 +14,20 @@ export default () => {
   const { loading, quotes } = quotesData;
   const waveControls = useAnimation();
   const quotesControls = useAnimation();
-  
+
   //Index to determine the quote to render
   const [quotesIndex, setQuotesIndex] = useState(-1);
+
+  console.log(quotesIndex);
+  console.log(quotes);
+
+  const increaseQuotesIndex = () => {
+    setQuotesIndex(prev => (prev >= quotesLimitNr ? quotesLimitNr : prev + 1));
+  };
+
+  const decreaseQuotesIndex = () => {
+    setQuotesIndex(prev => (prev <= 0 ? 0 : prev - 1));
+  };
 
   //functions to start animations
   const startWave = () => {
@@ -24,7 +36,7 @@ export default () => {
   const showQuote = () => {
     quotesControls.start({
       opacity: [0, 0, 1, 0.8, 0.7, 0.6, 0.5],
-      transition: { duration: 7, ease: "linear" }
+      transition: { duration: secondsBetweenWaves, ease: "linear" }
     });
   };
 
@@ -34,20 +46,20 @@ export default () => {
       if (!quotes[quotesIndex + 1]) {
         dispatch(fetchRandomQuote);
       } else {
-        setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));
+        increaseQuotesIndex();
       }
-    }, 7000);
+    }, secondsBetweenWaves * 1000);
     return () => {
       clearTimeout(id);
     };
   });
 
-  //Every time the quote dependency changes, run the animations, and when un-mounting, increase the index.
+  //Every time the quotes dependency changes, run the animations, and when un-mounting, increase the index.
   useLayoutEffect(() => {
     startWave();
     showQuote();
     return () => {
-      setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));
+      increaseQuotesIndex();
     };
   }, [quotes]);
 
@@ -66,7 +78,8 @@ export default () => {
         quotesControls={quotesControls}
       />
       <ActionButtonsContainer
-        setQuotesIndex={setQuotesIndex}
+        increaseQuotesIndex={increaseQuotesIndex}
+        decreaseQuotesIndex={decreaseQuotesIndex}
         quotesIndex={quotesIndex}
         loading={loading}
         quotes={quotes}

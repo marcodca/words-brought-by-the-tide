@@ -4,9 +4,13 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import ActionButton from "./ActionButton";
 
-
-export default ({ setQuotesIndex, quotesIndex, loading, quotes }) => {
-    
+export default ({
+  increaseQuotesIndex,
+  decreaseQuotesIndex,
+  quotesIndex,
+  loading,
+  quotes
+}) => {
   const dispatch = useDispatch();
 
   const isPreviousDisabled = quotesIndex < 1;
@@ -15,16 +19,14 @@ export default ({ setQuotesIndex, quotesIndex, loading, quotes }) => {
   return (
     <Container>
       <ActionButton
-        onClick={() => {
-          setQuotesIndex(prev => (prev <= 0 ? 0 : prev - 1));
-        }}
+        onClick={() => {decreaseQuotesIndex()}}
         disabled={isPreviousDisabled}
         label={"Previous Quote"}
       />
       <ActionButton
         onClick={() => {
           if (!!quotes[quotesIndex + 1]) {
-            setQuotesIndex(prev => (prev >= 4 ? 4 : prev + 1));
+            increaseQuotesIndex();
             return;
           }
           dispatch(fetchRandomQuote);

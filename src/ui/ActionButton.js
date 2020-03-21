@@ -1,10 +1,11 @@
 import React from "react";
+import propTypes from "prop-types";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import media from "../styles/mediaHelper";
 import arrow from "../styles/img/arrow.svg";
 
-export default ({ onClick, disabled, label }) => (
+const ActionButton = ({ onClick, disabled, label }) => (
   <Button
     whileHover={!disabled && { scale: 1.05 }}
     whileTap={!disabled && { scale: 0.95 }}
@@ -13,7 +14,7 @@ export default ({ onClick, disabled, label }) => (
     label={label}
   >
     {label}
-    <img src={arrow} />
+    <img src={arrow} alt="arrow" />
   </Button>
 );
 
@@ -47,3 +48,11 @@ const Button = styled(motion.button)`
     width: 80%;
   }
 `;
+
+ActionButton.propsTypes = {
+  onClick: propTypes.func.isRequired,
+  disabled: propTypes.bool.isRequired,
+  label: propTypes.string.isRequired
+};
+
+export default ActionButton;

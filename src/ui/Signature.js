@@ -7,7 +7,7 @@ export default () => (
   <a href={"https://www.marcodecara.com/"}>
     <Container>
       Made by:
-      <img src={logo} width={30} />
+      <img src={logo} width={30} alt="Marco de cara's logo"/>
     </Container>
   </a>
 );

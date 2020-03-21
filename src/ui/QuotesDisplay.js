@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { inRange } from "lodash";
 
 const QuotesDisplay = ({ quote, loading, quotesControls }) => {
+  
   return (
     <AnimatePresence>
       {loading === "idle" && (
