@@ -3,10 +3,10 @@ import styled from "styled-./ui/MainContainer
 import GlobalStyle from "./styles/globalStyle";
 import sandTexture from "./styles/img/sand-texture.png";
 import MainContainer from "./ui/MainContainer";
-import WavesContainer from "./ui/WavesSmallContainer
-import TotalCountDisplay from "./ui/TotalCountDisplay
-import StatusDisplay from "./ui/StatusDisplay
-import Signature from "./ui/Signature
+import WavesContainer from "./ui/WavesSmallContainer"
+import TotalCountDisplay from "./ui/TotalCountDisplay"
+import StatusDisplay from "./ui/StatusDisplay"
+import Signature from "./ui/Signature"
 
 function App() {
   return (
