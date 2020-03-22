@@ -11,6 +11,7 @@ const ADD_ONE_TO_COUNT = `
   `;
 
 export default async dispatch => {
+  
   let count = await getTotalQuotesCount();
   count++;
 

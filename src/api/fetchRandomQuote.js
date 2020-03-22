@@ -18,7 +18,7 @@ export default async dispatch => {
         }
       }
     );
-    
+  
     const { data } = response;
     if (!data.content && data.message) throw new Error(data.message);
 

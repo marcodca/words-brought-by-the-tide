@@ -17,6 +17,7 @@ export default () => {
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            key={"loading"}
           >
             Loading...
             <Spinner />
@@ -27,6 +28,7 @@ export default () => {
             initial={{ opacity: 0, scale: 0 }}
             exit={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
+            key={"error"}
           >
             <span>{error}</span>
           </StatusContainer>
