@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
-import { useAnimation } from "framer-motion";
+import { useAnimation, transform } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { selectQuotes } from "../reducers/quotesSlice";
 import fetchRandomQuote from "../api/fetchRandomQuote";
 import QuotesDisplay from "./QuotesDisplay";
 import WavesBigContainer, { waveAnimationStarter } from "./WavesBigContainer";
 import ActionButtonsContainer from "./ActionButtonsContainer";
-import { quotesLimitNr, secondsBetweenWaves } from "../config";
+import { quotesLimitNr, defaultSecondsBetweenWaves } from "../config";
 
 export default () => {
   const dispatch = useDispatch();
@@ -14,6 +14,11 @@ export default () => {
   const { loading, quotes } = quotesData;
   const waveControls = useAnimation();
   const quotesControls = useAnimation();
+
+  //Waiting time for next wave, is gonna depend on the current wave content length
+  const [secondsBetweenWaves, setSecondsBetweenWaves] = useState(
+    defaultSecondsBetweenWaves
+  );
 
   //Index to determine the quote to render
   const [quotesIndex, setQuotesIndex] = useState(-1);
@@ -37,7 +42,7 @@ export default () => {
     });
   };
 
-  //This effect set the flow! If there's no next quote available, fetch a new quote, if there's a next quote available, increase the quote index.
+  //This effect sets the flow! If there's no next quote available, fetch a new quote, if there's a next quote available, increase the quote index.
   useEffect(() => {
     const id = setTimeout(() => {
       if (!quotes[quotesIndex + 1]) {
@@ -66,9 +71,21 @@ export default () => {
     showQuote();
   }, [quotesIndex]);
 
+  //And tis effect (the last one, I swear!) is gonna run each time the last quote in the quotes array (aka, the quote to be render) changes. The effect is gonna set the waiting time until the next wave.
+  useEffect(() => {
+    setSecondsBetweenWaves(
+      quotes[quotesIndex]
+        ? transform(quotes[quotesIndex]?.content.length, [0, 1000], [5, 25])
+        : defaultSecondsBetweenWaves
+    );
+  }, [quotes[quotesIndex]]);
+
   return (
     <div data-testid="quotes-display-container">
-      <WavesBigContainer controls={waveControls} />
+      <WavesBigContainer
+        controls={waveControls}
+        wetSandDuration={secondsBetweenWaves}
+      />
       <QuotesDisplay
         quote={quotes[quotesIndex]}
         loading={loading}
