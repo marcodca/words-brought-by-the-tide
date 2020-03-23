@@ -49,7 +49,7 @@ describe("fetchRandomQuote", () => {
     expect(dispatch).toHaveBeenLastCalledWith(addOneToTotalQuotesCount);
   });
 
-  it("Displays an error and dispatches the correct action if theres no data content and theres data message", async () => {
+  it("Displays an error and dispatches the correct action if theres no data content and there is data message", async () => {
     const mockResponse = {
       data: {
         message: "No content"
