@@ -26,7 +26,7 @@ describe("getTotalQuotesCount", () => {
     expect(result).toBe(count);
   });
 
-  it("consoles error if we get any error back from the query response, makes no dispatch,  and returns nothing", async () => {
+  it("consoles error if we get any error field back in the query response, makes no dispatch, and returns the error", async () => {
     const mockResponse = { errors: "Invalid Key" };
 
     sendFaunaDbQuery.mockImplementationOnce(() =>
@@ -37,16 +37,16 @@ describe("getTotalQuotesCount", () => {
     expect.assertions(3);
     expect(console.error).toHaveBeenCalledWith(mockResponse.errors);
     expect(dispatch).not.toHaveBeenCalled();
-    expect(result).toBeUndefined();
+    expect(result).toBe(mockResponse.errors);
   });
 
-  it("consoles error if the query fails, makes no dispatch, and returns nothing", async () => {
+  it("consoles error if the query fails, makes no dispatch, and returns the error", async () => {
     const mockResponse = { errors: "Fetching Error" };
     sendFaunaDbQuery.mockImplementationOnce(() => Promise.reject(mockResponse));
     const result = await getTotalQuotesCount(dispatch);
     expect.assertions(3);
-    expect(console.error).toHaveBeenCalledWith(mockResponse.errors);
+    expect(console.error).toHaveBeenCalledWith(mockResponse);
     expect(dispatch).not.toHaveBeenCalled();
-    expect(result).toBeUndefined();
+    expect(result).toBe(mockResponse);
   });
 });

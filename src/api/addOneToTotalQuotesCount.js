@@ -11,8 +11,12 @@ const ADD_ONE_TO_COUNT = `
   `;
 
 export default async dispatch => {
-  
   let count = await getTotalQuotesCount();
+
+  if (typeof count !== "number") {
+    console.error(count);
+    return;
+  }
   count++;
 
   const { data, errors } = await sendFaunaDbQuery(ADD_ONE_TO_COUNT, { count });

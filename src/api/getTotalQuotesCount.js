@@ -10,17 +10,21 @@ const GET_TOTAL = `query{
   }`;
 
 export default async dispatch => {
-  const { data, errors } = await sendFaunaDbQuery(GET_TOTAL);
+  try {
+    const { data, errors } = await sendFaunaDbQuery(GET_TOTAL);
+    if (errors) {
+      console.error(errors);
+      return errors;
+    }
 
-  if (errors) {
-    console.error("from errors", errors);
-    return;
+    if (dispatch) {
+      dispatch(totalCountFetchSucceeded(data.getTotalfetchCount.count));
+    }
+    return data.getTotalfetchCount.count;
+  } catch (e) {
+    console.error(e);
+    return e;
   }
 
   // console.log(data);
-
-  if (dispatch) {
-    dispatch(totalCountFetchSucceeded(data.getTotalfetchCount.count));
-  }
-  return data.getTotalfetchCount.count;
 };
