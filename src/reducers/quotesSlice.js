@@ -19,6 +19,10 @@ export const slice = createSlice({
     fetchQuoteSucceeded: (state, action) => {
       const { content, author } = action.payload;
       state.loading = "idle";
+      //Edge case check ahead
+      if (state.quotes.length >= quotesLimitNr + 2)
+      //
+        state.quotes.length = quotesLimitNr + 1;
       if (state.quotes.length >= quotesLimitNr + 1) state.quotes.shift();
       state.quotes.push({ content, author });
       state.error = null;

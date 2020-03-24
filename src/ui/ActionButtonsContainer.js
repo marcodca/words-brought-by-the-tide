@@ -20,13 +20,15 @@ const ActionButtonsContainer = ({
   return (
     <Container>
       <ActionButton
+        data-testid="prev-quote"
         onClick={() => {
           decreaseQuotesIndex();
         }}
         disabled={isPreviousDisabled}
         label={"Previous Quote"}
-      />
+        />
       <ActionButton
+        data-testid="next-quote"
         onClick={() => {
           if (!!quotes[quotesIndex + 1]) {
             increaseQuotesIndex();

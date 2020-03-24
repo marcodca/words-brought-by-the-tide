@@ -81,7 +81,7 @@ export default () => {
   }, [quotes[quotesIndex]]);
 
   return (
-    <div data-testid="quotes-display-container">
+    <>
       <WavesBigContainer
         controls={waveControls}
         wetSandDuration={secondsBetweenWaves}
@@ -98,6 +98,6 @@ export default () => {
         loading={loading}
         quotes={quotes}
       />
-    </div>
+    </>
   );
 };

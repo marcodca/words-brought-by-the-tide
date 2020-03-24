@@ -4,10 +4,9 @@ import styled from "styled-components";
 import { motion, AnimatePresence, transform } from "framer-motion";
 
 const QuotesDisplay = ({ quote, loading, quotesControls }) => {
-
   //Used to set the font-size of the quote depending on its length
   const quoteFontSize = quote
-    ? transform(quote.content.length, [0, 1000], [3.5, 1.5,])
+    ? transform(quote.content.length, [0, 1000], [3.5, 1.5])
     : 4;
 
   return (
@@ -19,10 +18,13 @@ const QuotesDisplay = ({ quote, loading, quotesControls }) => {
           exit={{ opacity: 0 }}
         >
           <Container animate={quotesControls}>
-            <Quote data-testid="quote-display" fontSize={quoteFontSize}>
-              {quote ? quote.content : "Words brought by the tide"}
-              <Author>{quote && quote.author}</Author>
-            </Quote>
+            <Title shouldNotDisplay={!!quote}>Words brought by the tide</Title>
+            {quote && (
+              <Quote data-testid="quote-display" fontSize={quoteFontSize}>
+                {quote.content}
+                <Author>{quote.author}</Author>
+              </Quote>
+            )}
           </Container>
         </motion.div>
       )}
@@ -35,6 +37,13 @@ const Container = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const Title = styled.h1`
+  width: 80%;
+  font-size: 4rem;
+  text-align: center;
+  display: ${props => props.shouldNotDisplay && `none`};
 `;
 
 const Quote = styled.h2`
