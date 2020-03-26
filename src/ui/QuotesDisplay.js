@@ -9,6 +9,8 @@ const QuotesDisplay = ({ quote, loading, quotesControls }) => {
     ? transform(quote.content.length, [0, 1000], [3.5, 1.5])
     : 4;
 
+    console.log(quote)
+
   return (
     <AnimatePresence>
       {loading === "idle" && (

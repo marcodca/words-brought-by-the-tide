@@ -26,5 +26,4 @@ export default async dispatch => {
     return e;
   }
 
-  // console.log(data);
 };
