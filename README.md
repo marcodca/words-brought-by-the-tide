@@ -49,4 +49,4 @@ Launches the test runner in the interactive watch mode.
 
 ## Acknowledgments
 
-This project was made with React, bootstrapped with Create React App using the Redux and Redux Toolkit template. There's some serverless interaction for the global counter, provided by FaunaDB. Styled-components were used for styling, and animation handled by framer-motion (a great experience animating svg with this library).     
+This project was made with React, bootstrapped with Create React App using the Redux and Redux Toolkit template. There's some serverless interaction for the global counter, provided by FaunaDB. Styled-components were used for styling, and animation handled by framer-motion (a great experience animating svg with this library). Testing by Jest and React-testing-library.     
